@@ -4,8 +4,201 @@ const users = [
   {
     id: '410544b2-4001-4271-9855-fec4b6a6442a',
     name: 'User',
-    email: 'user@nextmail.com',
+    email: 'user@mail.com',
     password: '123456',
+  },
+  {
+    id: '410544b2-4003-4271-9855-fec4b6a6442a',
+    name: 'Admin',
+    email: 'admin@mail.com',
+    password: '123456',
+  },
+];
+const categories =[
+  {
+    id: '3958dc9e-781f-4377-85e9-fec4b6a6442a',
+    name: 'Pizza',
+    image_url: '/categories/pizza.png',
+  },
+  {
+    id: '3958dc9e-782f-4377-85e9-fec4b6a6442a',
+    name: 'Lasagna',
+    image_url: '/categories/lasagna.png',
+  },
+];
+const products = [
+  {
+    title:'Americana',
+    description:'salsa pizzera, queso mozzarella y jamón',
+    image_url:'/products/pizza_americana.png',
+    category_id:'3958dc9e-781f-4377-85e9-fec4b6a6442a',
+    base_price: 10.0,
+    sizes: 
+      [
+        {
+          name:'Personal',
+          price: 0.0
+        },
+        {
+          name:'Mediana',
+          price: 9.0
+        },
+        {
+          name:'Familiar',
+          price: 20.0
+        },
+        {
+          name:'Promocion',
+          price: 27.0
+        }
+      ],
+    state:true
+  },
+  {
+    title:'Alemana',
+    description:'salsa pizzera, queso mozzarella,chorizo salame,cabanossi',
+    image_url:'/products/pizza_alemana.png',
+    category_id:'3958dc9e-781f-4377-85e9-fec4b6a6442a',
+    base_price: 10.5,
+    sizes: 
+      [
+        {
+          name:'Personal',
+          price: 0.0
+        },
+        {
+          name:'Mediana',
+          price: 9.5
+        },
+        {
+          name:'Familiar',
+          price: 21.5
+        },
+        {
+          name:'Promocion',
+          price: 28.5
+        }
+      ],
+    state:true
+  },
+  {
+    title:'Española',
+    description:'salsa pizzera, queso mozzarella y chorizo español',
+    image_url:'/products/pizza_espanola.png',
+    category_id:'3958dc9e-781f-4377-85e9-fec4b6a6442a',
+    base_price: 10.0,
+    sizes: 
+      [
+        {
+          name:'Personal',
+          price: 0.0
+        },
+        {
+          name:'Mediana',
+          price: 9.0
+        },
+        {
+          name:'Familiar',
+          price: 20.0
+        },
+        {
+          name:'Promocion',
+          price: 27.0
+        }
+      ],
+    state:true
+  },
+  {
+    title:'Francesa',
+    description:'salsa pizzera, queso mozzarella, jamón, champiñon.',
+    image_url:'/products/pizza_francesa.png',
+    category_id:'3958dc9e-781f-4377-85e9-fec4b6a6442a',
+    base_price: 10.5,
+    sizes: 
+      [
+        {
+          name:'Personal',
+          price: 0.0
+        },
+        {
+          name:'Mediana',
+          price: 9.5
+        },
+        {
+          name:'Familiar',
+          price: 21.5
+        },
+        {
+          name:'Promocion',
+          price: 28.5
+        }
+      ],
+    state:true
+  },
+  {
+    title:'Hawaiana 1',
+    description:'salsa pizzera, queso mozzarella, jamón, piña',
+    image_url:'/products/pizza_hawaiana.png',
+    category_id:'3958dc9e-781f-4377-85e9-fec4b6a6442a',
+    base_price: 10.5,
+    sizes: 
+      [
+        {
+          name:'Personal',
+          price: 0.0
+        },
+        {
+          name:'Mediana',
+          price: 9.5
+        },
+        {
+          name:'Familiar',
+          price: 21.5
+        },
+        {
+          name:'Promocion',
+          price: 28.5
+        }
+      ],
+    state:true
+  },
+  {
+    title:'Bolognesa',
+    description:'salsa boloñesa, salsa blanca.',
+    image_url:'/products/lasagna_bolognesa.png',
+    category_id:'3958dc9e-782f-4377-85e9-fec4b6a6442a',
+    base_price: 17.0,
+    sizes: 
+      [
+        {
+          name:'Personal',
+          price: 0.0
+        },
+        {
+          name:'Mediana',
+          price: 5.0
+        },
+      ],
+    state:true
+  },
+  {
+    title:'Romana',
+    description:'Pollo deshilachado , jamón, salsa boloñesa,salsa blanca.',
+    image_url:'/products/lasagna_romana.png',
+    category_id:'3958dc9e-782f-4377-85e9-fec4b6a6442a',
+    base_price: 19.0,
+    sizes: 
+      [
+        {
+          name:'Personal',
+          price: 0.0
+        },
+        {
+          name:'Mediana',
+          price: 5.0
+        },
+      ],
+    state:true
   },
 ];
 
@@ -182,6 +375,8 @@ const revenue = [
 
 module.exports = {
   users,
+  categories,
+  products,
   customers,
   invoices,
   revenue,
