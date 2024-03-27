@@ -33,25 +33,7 @@ const products = [
     image_url:'/products/pizza_americana.png',
     category_id:'3958dc9e-781f-4377-85e9-fec4b6a6442a',
     base_price: 10.0,
-    sizes: 
-      [
-        {
-          name:'Personal',
-          price: 0.0
-        },
-        {
-          name:'Mediana',
-          price: 9.0
-        },
-        {
-          name:'Familiar',
-          price: 20.0
-        },
-        {
-          name:'Promocion',
-          price: 27.0
-        }
-      ],
+    sizes: '[{"name":"Personal","price": 0.0},{"name":"Mediana","price": 9.0},{"name":"Familiar","price": 20.0},{"name":"Promocion","price": 27.0}]',
     state:true
   },
   {
@@ -60,25 +42,7 @@ const products = [
     image_url:'/products/pizza_alemana.png',
     category_id:'3958dc9e-781f-4377-85e9-fec4b6a6442a',
     base_price: 10.5,
-    sizes: 
-      [
-        {
-          name:'Personal',
-          price: 0.0
-        },
-        {
-          name:'Mediana',
-          price: 9.5
-        },
-        {
-          name:'Familiar',
-          price: 21.5
-        },
-        {
-          name:'Promocion',
-          price: 28.5
-        }
-      ],
+    sizes: '[{"name":"Personal","price": 0.0},{"name":"Mediana","price": 9.5},{"name":"Familiar","price": 21.5},{"name":"Promocion","price": 28.5}]',
     state:true
   },
   {
@@ -87,25 +51,7 @@ const products = [
     image_url:'/products/pizza_espanola.png',
     category_id:'3958dc9e-781f-4377-85e9-fec4b6a6442a',
     base_price: 10.0,
-    sizes: 
-      [
-        {
-          name:'Personal',
-          price: 0.0
-        },
-        {
-          name:'Mediana',
-          price: 9.0
-        },
-        {
-          name:'Familiar',
-          price: 20.0
-        },
-        {
-          name:'Promocion',
-          price: 27.0
-        }
-      ],
+    sizes: '[{"name":"Personal","price": 0.0},{"name":"Mediana","price": 9.0},{"name":"Familiar","price": 20.0},{"name":"Promocion","price": 27.0}]',
     state:true
   },
   {
@@ -114,25 +60,7 @@ const products = [
     image_url:'/products/pizza_francesa.png',
     category_id:'3958dc9e-781f-4377-85e9-fec4b6a6442a',
     base_price: 10.5,
-    sizes: 
-      [
-        {
-          name:'Personal',
-          price: 0.0
-        },
-        {
-          name:'Mediana',
-          price: 9.5
-        },
-        {
-          name:'Familiar',
-          price: 21.5
-        },
-        {
-          name:'Promocion',
-          price: 28.5
-        }
-      ],
+    sizes: '[{ "name":"Personal", "price": 0.0},{"name":"Mediana", "price": 9.5},{"name":"Familiar","price": 21.5 },{ "name":"Promocion","price": 28.5}]',
     state:true
   },
   {
@@ -141,25 +69,7 @@ const products = [
     image_url:'/products/pizza_hawaiana.png',
     category_id:'3958dc9e-781f-4377-85e9-fec4b6a6442a',
     base_price: 10.5,
-    sizes: 
-      [
-        {
-          name:'Personal',
-          price: 0.0
-        },
-        {
-          name:'Mediana',
-          price: 9.5
-        },
-        {
-          name:'Familiar',
-          price: 21.5
-        },
-        {
-          name:'Promocion',
-          price: 28.5
-        }
-      ],
+    sizes: '[{"name":"Personal","price": 0.0},{"name":"Mediana","price": 9.5},{"name":"Familiar","price": 21.5},{"name":"Promocion","price": 28.5}]',
     state:true
   },
   {
@@ -168,17 +78,7 @@ const products = [
     image_url:'/products/lasagna_bolognesa.png',
     category_id:'3958dc9e-782f-4377-85e9-fec4b6a6442a',
     base_price: 17.0,
-    sizes: 
-      [
-        {
-          name:'Personal',
-          price: 0.0
-        },
-        {
-          name:'Mediana',
-          price: 5.0
-        },
-      ],
+    sizes: '[{"name":"Personal","price": 0.0},{"name":"Mediana","price": 5.0}]',
     state:true
   },
   {
@@ -187,17 +87,7 @@ const products = [
     image_url:'/products/lasagna_romana.png',
     category_id:'3958dc9e-782f-4377-85e9-fec4b6a6442a',
     base_price: 19.0,
-    sizes: 
-      [
-        {
-          name:'Personal',
-          price: 0.0
-        },
-        {
-          name:'Mediana',
-          price: 5.0
-        },
-      ],
+    sizes: '[{"name":"Personal","price": 0.0},{"name":"Mediana","price": 5.0}]',
     state:true
   },
 ];
