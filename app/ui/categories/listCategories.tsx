@@ -1,5 +1,7 @@
 // import { BRAND } from "@/types/brand";
 import Image from "next/image";
+import Search from "../search";
+import { CreateCategory } from "./buttons";
 type BRAND = {
     logo: string;
     name: string;
@@ -54,12 +56,33 @@ const brandData: BRAND[] = [
 
 const ListCategories = () => {
   return (
-    <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
-      <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
-        Top Channels
-      </h4>
+    <div 
+    // className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1"
+    className="flex flex-col gap-y-4 rounded-sm border border-stroke bg-white p-3 shadow-default dark:border-strokedark dark:bg-boxdark sm:flex-row sm:items-center sm:justify-between"
+    >
+      <div className="flex flex-col gap-4 2xsm:flex-row 2xsm:items-center">
+        <div className="flex -space-x-2">
+          <Search placeholder="Buscar Categorias..." />
+        </div>
+        <div>
+        <CreateCategory />
+        </div>
 
-      <div className="flex flex-col">
+      </div>
+
+
+
+      {/* <div className="mt-0 flex items-center justify-between gap-2 md:mt-0"> */}
+      {/* flex -space-x-2 */}
+      
+      {/* <Search placeholder="Buscar Categorias..." /> */}
+      
+      {/* <CreateCategory /> */}
+      
+        
+       
+      {/* </div> */}
+      {/* <div className="flex flex-col">
         <div className="grid grid-cols-3 rounded-sm bg-gray-2 dark:bg-meta-4 sm:grid-cols-5">
           <div className="p-2.5 xl:p-5">
             <h5 className="text-sm font-medium uppercase xsm:text-base">
@@ -123,7 +146,7 @@ const ListCategories = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

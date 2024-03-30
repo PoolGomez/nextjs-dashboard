@@ -1,17 +1,43 @@
-import Breadcrumb from "@/app/ui/breadcrumb/breadcrumb";
-import ListCategories from "@/app/ui/categories/listCategories";
-import Link from "next/link";
+import { fetchCategoriesPages } from "@/app/lib/data/categories";
+import { CreateCategory } from "@/app/ui/categories/buttons";
+import { lusitana } from "@/app/ui/fonts";
+import Loader from "@/app/ui/loader/loader";
+import Search from "@/app/ui/search";
+import { Suspense } from "react";
+import Table from '@/app/ui/categories/table';
 
-export default function CategoriesPage () {
+export default async function CategoriesPage ({searchParams}:{searchParams?:{
+  query?:string;
+  page?: string;
+}}) {
+  const query = searchParams?.query || '';
+  const currentPage = Number(searchParams?.page) || 1;
+
+  const totalPages = await fetchCategoriesPages(query)
   return (
-    <>
-     <Breadcrumb pageName="Categorias" />
+    <div className="w-full">
+      <div className="flex w-full items-center justify-between">
+        <h1 className={`${lusitana.className} text-2xl`}>Categorias</h1>
+      </div>
+      <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
+        <Search placeholder="Search categoria..." />
+        <CreateCategory />
+      </div>
+      {/* <InvoicesTableSkeleton /> */}
+      
+      <Suspense key={query + currentPage} fallback={<Loader />}>
+        <Table query={query} currentPage={currentPage} />
+      </Suspense>
 
-    <div className="flex flex-col gap-10">
-        <ListCategories />
     </div>
-    </>
+    
+
+     
+    
+    
   )
 }
 
 
+{/* <Breadcrumb pageName="Categorias" />
+      <ListCategories /> */}

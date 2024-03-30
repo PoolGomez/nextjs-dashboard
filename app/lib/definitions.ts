@@ -86,3 +86,11 @@ export type InvoiceForm = {
   amount: number;
   status: 'pending' | 'paid';
 };
+
+
+export type CategoriesTable = {
+  id: string;
+  name: string;
+  imagen_url: string;
+  state: boolean;
+};
