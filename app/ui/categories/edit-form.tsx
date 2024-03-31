@@ -1,26 +1,39 @@
 'use client';
-import Link from 'next/link';
-import { createInvoice } from '@/app/lib/actions';
-import { useFormState } from 'react-dom';
-import Switcher from '../common/switcher';
-import { CheckIcon, ClockIcon } from '@heroicons/react/20/solid';
-import { createCategory } from '@/app/lib/actions/categories';
-import { useEffect } from 'react';
-import toast from 'react-hot-toast';
-import { redirect } from 'next/navigation';
-import { revalidatePath } from 'next/cache';
 
-export default function CreateCategoryForm() {
+import { CategoryForm, CustomerField, InvoiceForm } from '@/app/lib/definitions';
+import {
+  CheckIcon,
+  ClockIcon,
+  CurrencyDollarIcon,
+  UserCircleIcon,
+} from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import { Button } from '@/app/ui/button';
+import { updateInvoice } from '@/app/lib/actions';
+import { useFormState } from 'react-dom';
+import { updateCategory } from '@/app/lib/actions/categories';
+import { useEffect } from 'react';
+import { redirect } from 'next/navigation';
+import toast from 'react-hot-toast';
+
+
+export default function EditCategoryForm({
+    category
+}: {
+    category: CategoryForm;
+}) {
   const initialState = { message: null, errors: {} };
-  const [state, dispatch] = useFormState(createCategory, initialState);
+  const updateCategoryWithId = updateCategory.bind(null, category.id);
+  const [state, dispatch] = useFormState(updateCategoryWithId, initialState);
 
   useEffect(()=>{
-    if(state.message === 'Register category OK'){
+    if(state.message === 'Update category OK'){
         // revalidatePath('/dashboard/categories');
-        toast.success('Categoria Registrada Correctamente!');
+        toast.success('Categoria Actualizada Correctamente!');
         redirect('/dashboard/categories');
     }
   },[state])
+  
   return (
     <form action={dispatch}>
       <div className="grid grid-cols-1 gap-9 sm:grid-cols-1">
@@ -37,6 +50,7 @@ export default function CreateCategoryForm() {
                         id='name'
                         name='name'
                         type="text"
+                        defaultValue={category.name}
                         placeholder="Ingrese nombre"
                         className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         aria-describedby="name-error"
@@ -64,6 +78,7 @@ export default function CreateCategoryForm() {
                         id='image_url'
                         name='image_url'
                         type="text"
+                        defaultValue={category.image_url}
                         placeholder="Ingrese la URL de la imagen"
                         className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         aria-describedby="image-error"
@@ -95,12 +110,13 @@ export default function CreateCategoryForm() {
                         name="status"
                         type="radio"
                         value="active"
+                        defaultChecked={category.status ==='active'}
                         className="h-4 w-4 cursor-pointer border-primary bg-primary text-primary focus:ring-2"
                         // required
                         aria-describedby="status-error"
                         />
                         <label
-                        htmlFor="activo"
+                        htmlFor="active"
                         className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full  px-3 py-1.5  text-black dark:text-white"
                         >
                         Activo
@@ -112,12 +128,13 @@ export default function CreateCategoryForm() {
                         name="status"
                         type="radio"
                         value="inactive"
+                        defaultChecked={category.status ==='inactive'}
                         className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
                         // required
                         aria-describedby="status-error"
                         />
                         <label
-                        htmlFor="inactivo"
+                        htmlFor="inactive"
                         className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-black dark:text-white"
                         >
                         Inactivo

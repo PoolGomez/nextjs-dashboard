@@ -19,13 +19,13 @@ const categories =[
     id: '3958dc9e-781f-4377-85e9-fec4b6a6442a',
     name: 'Pizza',
     image_url: '/categories/pizza.png',
-    state:true
+    state:'active'
   },
   {
     id: '3958dc9e-782f-4377-85e9-fec4b6a6442a',
     name: 'Lasagna',
     image_url: '/categories/lasagna.png',
-    state:true
+    state:'active'
   },
 ];
 const products = [

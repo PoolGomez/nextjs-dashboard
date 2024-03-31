@@ -1,7 +1,7 @@
 
 import { sql } from '@vercel/postgres';
 import { unstable_noStore as noStore } from 'next/cache';
-import { CategoriesTable } from '../definitions';
+import { CategoriesTable, CategoryForm } from '../definitions';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -35,10 +35,11 @@ export async function fetchFilteredCategories(
             id,
             name,
             image_url,
-            state
+            status
         FROM categories
         WHERE
-            name ILIKE ${`%${query}%`}
+            name ILIKE ${`%${query}%`} OR
+            status ILIKE ${`%${query}%`}
         ORDER BY name DESC
         LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
         `;
@@ -48,3 +49,29 @@ export async function fetchFilteredCategories(
         throw new Error('Failed to fetch categories.');
     }
 }
+
+export async function fetchCategoryById(id: string) {
+    noStore();
+    try {
+      const data = await sql<CategoryForm>`
+        SELECT
+          id,
+          name,
+          image_url,
+          status
+        FROM categories
+        WHERE id = ${id};
+      `;
+  
+      const category = data.rows.map((item) => ({
+        ...item,
+        // Convert amount from cents to dollars
+        // amount: invoice.amount / 100,
+      }));
+    //   console.log(invoice); // Invoice is an empty array []
+      return category[0];
+    } catch (error) {
+      console.error('Database Error:', error);
+      throw new Error('Failed to fetch category.');
+    }
+  }

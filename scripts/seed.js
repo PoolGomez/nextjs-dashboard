@@ -99,7 +99,7 @@ async function seedCategories(client) {
         id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         image_url VARCHAR(255) NOT NULL,
-        state BOOLEAN );
+        status VARCHAR(50) NOT NULL );
       `;
 
     console.log(`Created "categories" table`);
@@ -108,7 +108,7 @@ async function seedCategories(client) {
     const insertedCategories = await Promise.all(
       categories.map(
         (category) => client.sql`
-        INSERT INTO categories (id, name, image_url,state)
+        INSERT INTO categories (id, name, image_url,status)
         VALUES (${category.id}, ${category.name}, ${category.image_url},${category.state})
         ON CONFLICT (id) DO NOTHING;
       `,
@@ -246,12 +246,12 @@ async function seedRevenue(client) {
 async function main() {
   const client = await db.connect();
 
-  await seedUsers(client);
+  // await seedUsers(client);
   await seedCategories(client);
-  await seedProducts(client);
-  await seedCustomers(client);
-  await seedInvoices(client);
-  await seedRevenue(client);
+  // await seedProducts(client);
+  // await seedCustomers(client);
+  // await seedInvoices(client);
+  // await seedRevenue(client);
 
   await client.end();
 }

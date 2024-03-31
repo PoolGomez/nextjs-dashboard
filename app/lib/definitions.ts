@@ -91,6 +91,13 @@ export type InvoiceForm = {
 export type CategoriesTable = {
   id: string;
   name: string;
-  imagen_url: string;
-  state: boolean;
+  image_url: string;
+  status: 'active' |'inactive';
+};
+
+export type CategoryForm = {
+  id: string;
+  name: string;
+  image_url: string;
+  status: 'active' | 'inactive';
 };

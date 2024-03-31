@@ -1,26 +1,26 @@
 // import { CheckIcon, ClockIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 
-export default function Status({ status }: { status: boolean }) {
+export default function Status({ status }: { status: string }) {
   return (
     <span
       className={clsx(
         'inline-flex rounded py-1 px-2',
         {
-          'bg-[#3CA745] text-sm font-medium text-white hover:bg-opacity-90': status === true,
-          'bg-[#DC3545] text-sm font-medium text-white hover:bg-opacity-90': status === false,
+          'bg-[#3CA745] text-sm font-medium text-white hover:bg-opacity-90': status === 'active',
+          'bg-[#DC3545] text-sm font-medium text-white hover:bg-opacity-90': status === 'inactive',
         },
       )}
     >
-      {status === true ? (
+      {status === 'active' ? (
         <>
-          Active
+          Activo
           {/* <ClockIcon className="ml-1 w-4 text-gray-500" /> */}
         </>
       ) : null}
-      {status === false ? (
+      {status === 'inactive' ? (
         <>
-          Inactive
+          Inactivo
           {/* <CheckIcon className="ml-1 w-4 text-white" /> */}
         </>
       ) : null}

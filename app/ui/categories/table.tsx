@@ -13,17 +13,17 @@ export default async function CategoriesTable({query, currentPage}:{query: strin
         <div className="flex flex-col">
         <div className="grid grid-cols-3 rounded-sm bg-gray-2 dark:bg-meta-4 sm:grid-cols-4">
           <div className="p-2.5 xl:p-5">
-            <h5 className="text-sm font-medium uppercase xsm:text-base">
+            <h5 className="text-sm font-medium uppercase xsm:text-base text-black dark:text-white">
               Imagen
             </h5>
           </div>
           <div className="p-2.5 xl:p-5">
-            <h5 className="text-sm font-medium uppercase xsm:text-base">
+            <h5 className="text-sm font-medium uppercase xsm:text-base  text-black dark:text-white">
               Nombre
             </h5>
           </div>
           <div className="hidden p-2.5 text-center sm:block xl:p-5">
-            <h5 className="text-sm font-medium uppercase xsm:text-base">
+            <h5 className="text-sm font-medium uppercase xsm:text-base text-black dark:text-white">
               Estado
             </h5>
           </div>
@@ -33,7 +33,7 @@ export default async function CategoriesTable({query, currentPage}:{query: strin
             </h5>
           </div> */}
           <div className="p-2.5 text-center sm:block xl:p-5">
-            <h5 className="text-sm font-medium uppercase xsm:text-base">
+            <h5 className="text-sm font-medium uppercase xsm:text-base text-black dark:text-white">
               Accion
             </h5>
           </div>
@@ -63,7 +63,7 @@ export default async function CategoriesTable({query, currentPage}:{query: strin
             </div>
 
             <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-                <Status status={category.state} />
+                <Status status={category.status} />
               {/* <p className="text-meta-3">{category.state === true ? 'Active' : 'Inactive'}</p> */}
             </div>
 
@@ -78,8 +78,9 @@ export default async function CategoriesTable({query, currentPage}:{query: strin
                   
                     </button> */}
                     <div className="flex justify-end gap-3">
-                    <DeleteCategory id={category.id} />
-                    <UpdateCategory id={category.id} />
+                      <UpdateCategory id={category.id} />
+                      <DeleteCategory id={category.id} />
+                    
                     </div>
                     
               {/* <p className="text-meta-5">{category.state}</p> */}

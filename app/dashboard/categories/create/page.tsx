@@ -1,6 +1,7 @@
 
-import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
+
 import CreateCategoryForm from '@/app/ui/categories/create-form';
+import Breadcrumbs from '@/app/ui/common/breadcrumb';
  
 export default async function CreateCategoriyPage() {
  
@@ -8,9 +9,9 @@ export default async function CreateCategoriyPage() {
     <main>
       <Breadcrumbs
         breadcrumbs={[
-          { label: 'Categories', href: '/dashboard/categoies' },
+          { label: 'Categorias', href: '/dashboard/categories' },
           {
-            label: 'Create Category',
+            label: 'Crear Categoria',
             href: '/dashboard/categories/create',
             active: true,
           },
