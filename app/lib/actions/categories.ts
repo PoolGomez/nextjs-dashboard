@@ -2,6 +2,8 @@
 import { z } from 'zod';
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
+import toast from 'react-hot-toast';
+import { redirect } from 'next/navigation';
 // import { redirect } from 'next/navigation';
 
 const FormSchema = z.object({
@@ -9,8 +11,11 @@ const FormSchema = z.object({
     name: z.string().min(1,{message:"El nombre es un campo obligatorio"}),
     image_url: z.string().min(1,{message:"La url de la imagen es un campo obligatorio"}),
     // state: z.coerce.boolean({required_error: "isActive is required"}),
-    status: z.string({required_error: "El estado es obligatorio",invalid_type_error: "Debe seleccionar un Estado",})
-    .min(1,{message:"El estado es obligatorio"}), 
+    // status: z.string({required_error: "El estado es obligatorio",invalid_type_error: "Debe seleccionar un Estado",})
+    // .min(1,{message:"El estado es obligatorio"}), 
+    status: z.enum(['active', 'inactive'],{
+        invalid_type_error: 'Porfavor seleccionar un estado.',
+    }),
   });
 
 const CreateCategory = FormSchema.omit({ id: true });
@@ -69,9 +74,6 @@ export async function createCategory(prevState: State, formData: FormData) {
     }
     revalidatePath('/dashboard/categories');
     return { message: 'Register category OK'};
-    // Revalidate the cache for the invoices page and redirect the user.
-    // revalidatePath('/dashboard/categories');
-    // redirect('/dashboard/categories');
 }
 
 export async function updateCategory(id: string,prevState: State, formData: FormData) {
@@ -89,7 +91,6 @@ export async function updateCategory(id: string,prevState: State, formData: Form
     }
 
     const { name, image_url, status } = validatedFields.data;
-    // const amountInCents = amount * 100;
    
     try {
         await sql`
@@ -100,9 +101,6 @@ export async function updateCategory(id: string,prevState: State, formData: Form
     } catch (error) {
         return { message: 'Database Error: Failed to Update Category.' };
     }
-    
     revalidatePath('/dashboard/categories');
     return { message: 'Update category OK'};
-    // revalidatePath('/dashboard/invoices');
-    // redirect('/dashboard/invoices');
 }

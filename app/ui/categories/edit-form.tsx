@@ -1,20 +1,17 @@
 'use client';
 
-import { CategoryForm, CustomerField, InvoiceForm } from '@/app/lib/definitions';
-import {
-  CheckIcon,
-  ClockIcon,
-  CurrencyDollarIcon,
-  UserCircleIcon,
-} from '@heroicons/react/24/outline';
+import { CategoryForm } from '@/app/lib/definitions';
+
 import Link from 'next/link';
-import { Button } from '@/app/ui/button';
-import { updateInvoice } from '@/app/lib/actions';
 import { useFormState } from 'react-dom';
 import { updateCategory } from '@/app/lib/actions/categories';
 import { useEffect } from 'react';
 import { redirect } from 'next/navigation';
 import toast from 'react-hot-toast';
+// import { useEffect } from 'react';
+// import { redirect } from 'next/navigation';
+// import toast from 'react-hot-toast';
+// import { revalidatePath } from 'next/cache';
 
 
 export default function EditCategoryForm({
@@ -28,7 +25,6 @@ export default function EditCategoryForm({
 
   useEffect(()=>{
     if(state.message === 'Update category OK'){
-        // revalidatePath('/dashboard/categories');
         toast.success('Categoria Actualizada Correctamente!');
         redirect('/dashboard/categories');
     }
@@ -47,8 +43,8 @@ export default function EditCategoryForm({
                 <div className="relative mt-2 rounded-md">
                   <div className="relative">
                     <input
-                        id='name'
-                        name='name'
+                        id="name"
+                        name="name"
                         type="text"
                         defaultValue={category.name}
                         placeholder="Ingrese nombre"
@@ -75,8 +71,8 @@ export default function EditCategoryForm({
                 <div className="relative mt-2 rounded-md">
                   <div className="relative">
                     <input
-                        id='image_url'
-                        name='image_url'
+                        id="image_url"
+                        name="image_url"
                         type="text"
                         defaultValue={category.image_url}
                         placeholder="Ingrese la URL de la imagen"

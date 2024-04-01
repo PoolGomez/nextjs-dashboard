@@ -62,14 +62,8 @@ export async function fetchCategoryById(id: string) {
         FROM categories
         WHERE id = ${id};
       `;
-  
-      const category = data.rows.map((item) => ({
-        ...item,
-        // Convert amount from cents to dollars
-        // amount: invoice.amount / 100,
-      }));
-    //   console.log(invoice); // Invoice is an empty array []
-      return category[0];
+      return data.rows[0];
+
     } catch (error) {
       console.error('Database Error:', error);
       throw new Error('Failed to fetch category.');

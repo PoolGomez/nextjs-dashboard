@@ -101,3 +101,28 @@ export type CategoryForm = {
   image_url: string;
   status: 'active' | 'inactive';
 };
+
+//products
+export type ProductsTable = {
+  id: string;
+  category_id: string;
+  name:string;
+  title: string;
+  base_price: number;
+  image_url: string;
+  status: 'active' |'inactive';
+};
+export type Size = {
+  name: string;
+  price: number;
+};
+export type ProductForm = {
+  id: string;
+  customer_id: string;
+  title: string;
+  description: string;
+  base_price: number;
+  image_url: string;
+  sizes: Size[];
+  status: 'pending' | 'paid';
+};

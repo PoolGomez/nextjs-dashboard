@@ -36,7 +36,7 @@ const products = [
     category_id:'3958dc9e-781f-4377-85e9-fec4b6a6442a',
     base_price: 10.0,
     sizes: '[{"name":"Personal","price": 0.0},{"name":"Mediana","price": 9.0},{"name":"Familiar","price": 20.0},{"name":"Promocion","price": 27.0}]',
-    state:true
+    status:'active'
   },
   {
     title:'Alemana',
@@ -45,7 +45,7 @@ const products = [
     category_id:'3958dc9e-781f-4377-85e9-fec4b6a6442a',
     base_price: 10.5,
     sizes: '[{"name":"Personal","price": 0.0},{"name":"Mediana","price": 9.5},{"name":"Familiar","price": 21.5},{"name":"Promocion","price": 28.5}]',
-    state:true
+    status:'active'
   },
   {
     title:'Española',
@@ -54,7 +54,7 @@ const products = [
     category_id:'3958dc9e-781f-4377-85e9-fec4b6a6442a',
     base_price: 10.0,
     sizes: '[{"name":"Personal","price": 0.0},{"name":"Mediana","price": 9.0},{"name":"Familiar","price": 20.0},{"name":"Promocion","price": 27.0}]',
-    state:true
+    status:'active'
   },
   {
     title:'Francesa',
@@ -63,7 +63,7 @@ const products = [
     category_id:'3958dc9e-781f-4377-85e9-fec4b6a6442a',
     base_price: 10.5,
     sizes: '[{ "name":"Personal", "price": 0.0},{"name":"Mediana", "price": 9.5},{"name":"Familiar","price": 21.5 },{ "name":"Promocion","price": 28.5}]',
-    state:true
+    status:'active'
   },
   {
     title:'Hawaiana 1',
@@ -72,7 +72,7 @@ const products = [
     category_id:'3958dc9e-781f-4377-85e9-fec4b6a6442a',
     base_price: 10.5,
     sizes: '[{"name":"Personal","price": 0.0},{"name":"Mediana","price": 9.5},{"name":"Familiar","price": 21.5},{"name":"Promocion","price": 28.5}]',
-    state:true
+    status:'active'
   },
   {
     title:'Bolognesa',
@@ -81,7 +81,7 @@ const products = [
     category_id:'3958dc9e-782f-4377-85e9-fec4b6a6442a',
     base_price: 17.0,
     sizes: '[{"name":"Personal","price": 0.0},{"name":"Mediana","price": 5.0}]',
-    state:true
+    status:'active'
   },
   {
     title:'Romana',
@@ -90,7 +90,7 @@ const products = [
     category_id:'3958dc9e-782f-4377-85e9-fec4b6a6442a',
     base_price: 19.0,
     sizes: '[{"name":"Personal","price": 0.0},{"name":"Mediana","price": 5.0}]',
-    state:true
+    status:'active'
   },
 ];
 

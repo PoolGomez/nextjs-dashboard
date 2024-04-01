@@ -61,7 +61,7 @@ async function seedProducts(client){
     category_id UUID NOT NULL,
     base_price NUMERIC NOT NULL,
     sizes JSONB,
-    state BOOLEAN);
+    status VARCHAR(50) NOT NULL);
     `;
 
     console.log(`Created "products" table`);
@@ -70,8 +70,8 @@ async function seedProducts(client){
     const insertedProducts = await Promise.all(
       products.map(
         (product) => client.sql`
-        INSERT INTO products (title, description, image_url, category_id, base_price, sizes, state)
-        VALUES (${product.title}, ${product.description}, ${product.image_url}, ${product.category_id}, ${product.base_price}, ${product.sizes}, ${product.state})
+        INSERT INTO products (title, description, image_url, category_id, base_price, sizes, status)
+        VALUES (${product.title}, ${product.description}, ${product.image_url}, ${product.category_id}, ${product.base_price}, ${product.sizes}, ${product.status})
         ON CONFLICT (id) DO NOTHING;
       `,
       ),
@@ -248,7 +248,7 @@ async function main() {
 
   // await seedUsers(client);
   await seedCategories(client);
-  // await seedProducts(client);
+  await seedProducts(client);
   // await seedCustomers(client);
   // await seedInvoices(client);
   // await seedRevenue(client);
