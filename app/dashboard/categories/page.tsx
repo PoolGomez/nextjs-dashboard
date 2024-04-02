@@ -5,6 +5,7 @@ import Loader from "@/app/ui/loader/loader";
 import Search from "@/app/ui/search";
 import { Suspense } from "react";
 import Table from '@/app/ui/categories/table';
+import Pagination from "@/app/ui/common/pagination";
 
 export default async function CategoriesPage ({searchParams}:{searchParams?:{
   query?:string;
@@ -28,6 +29,9 @@ export default async function CategoriesPage ({searchParams}:{searchParams?:{
       <Suspense key={query + currentPage} fallback={<Loader />}>
         <Table query={query} currentPage={currentPage} />
       </Suspense>
+      <div className="mt-5 flex w-full justify-center">
+        <Pagination totalPages={totalPages} />
+      </div>
 
     </div>
     

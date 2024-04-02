@@ -43,13 +43,13 @@ export async function fetchFilteredProducts(
             products.status,
             categories.name
         FROM products
-        JOIN categories ON products.category.id = categories.id
+        JOIN categories ON products.category_id = categories.id
         WHERE
             categories.name ILIKE ${`%${query}%`} OR
             products.title ILIKE ${`%${query}%`} OR
-            products.base_price ILIKE ${`%${query}%`} OR
-            products.status ILIKE ${`%${query}%`} OR
-        ORDER BY products.title ASC
+            products.base_price::text ILIKE ${`%${query}%`} OR
+            products.status ILIKE ${`%${query}%`}
+        ORDER BY products.title DESC
         LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
         `;
         return products.rows;
