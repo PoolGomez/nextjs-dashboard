@@ -18,7 +18,8 @@ const FormSchema = z.object({
     description: z.string(),
     image_url: z.string().min(1,{message:"La url de la imagen es un campo obligatorio"}),
     base_price: z.coerce.number().gt(0, { message: 'Ingrese una cantidad superior a 0.' }),
-    sizes: z.array(SizeSchema),
+    // sizes: z.array(SizeSchema),
+    sizes: z.string(),
     // state: z.coerce.boolean({required_error: "isActive is required"}),
     // status: z.string({required_error: "El estado es obligatorio",invalid_type_error: "Debe seleccionar un Estado",})
     // .min(1,{message:"El estado es obligatorio"}), 
@@ -44,6 +45,11 @@ export type State = {
 };
 
 export async function createProduct(prevState: State, formData: FormData) {
+    console.log('formData');
+    console.log(formData);
+    // return {
+    //     message: 'finish test'
+    // }
     // Validate form fields using Zod
     const validatedFields = CreateProduct.safeParse({
         categoryId: formData.get('categoryId'),
@@ -63,13 +69,13 @@ export async function createProduct(prevState: State, formData: FormData) {
     }
     // Prepare data for insertion into the database
     const { categoryId, title,description, image_url,base_price,sizes,status } = validatedFields.data;
-    const priceInCents = base_price * 100;
-    const sizesJSON = JSON.stringify(sizes);
+    // const priceInCents = (base_price * 100) ;
+    // const sizesJSON = JSON.stringify(sizes);
     // Insert data into the database
     try {
         await sql`
             INSERT INTO products (category_id, title, description, image_url, base_price, sizes, status)
-            VALUES (${categoryId}, ${title}, ${description}, ${image_url}, ${priceInCents},  ${sizesJSON}, ${status})
+            VALUES (${categoryId}, ${title}, ${description}, ${image_url}, ${base_price},  ${sizes}, ${status})
         `;
     } catch (error) {
         // If a database error occurs, return a more specific error.
@@ -79,7 +85,7 @@ export async function createProduct(prevState: State, formData: FormData) {
     }
     // Revalidate the cache for the invoices page and redirect the user.
     revalidatePath('/dashboard/products');
-    redirect('/dashboard/products');
+    return { message: 'Register product OK'};
 }
 
 export async function updateProduct(id: string,prevState: State, formData: FormData) {
@@ -101,15 +107,16 @@ export async function updateProduct(id: string,prevState: State, formData: FormD
     }
 
     const {categoryId, title,description, image_url,base_price,sizes,status  } = validatedFields.data;
-    const priceInCents = base_price * 100;
-    const sizesJSON = JSON.stringify(sizes);
+    // const priceInCents = base_price * 100;
+    // const priceInCents = base_price;
+    const sizesJSON = sizes;
    
     try {
         await sql`
             UPDATE products
             SET 
             category_id = ${categoryId}, title = ${title}, description = ${description}, image_url= ${image_url}, 
-            base_price= ${priceInCents}, sizes= ${sizesJSON}, status= ${status}
+            base_price= ${base_price}, sizes= ${sizesJSON}, status= ${status}
             WHERE id = ${id}
             `;
     } catch (error) {

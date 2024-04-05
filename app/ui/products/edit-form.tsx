@@ -1,33 +1,25 @@
 'use client';
 
-import { createProduct } from '@/app/lib/actions/products';
-import Link from 'next/link';
-import { redirect } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { updateCategory } from '@/app/lib/actions/categories';
+import { updateProduct } from '@/app/lib/actions/products';
+import { CategoryField, ProductForm } from '@/app/lib/definitions';
+import { useState } from 'react';
 import { useFormState } from 'react-dom';
-import toast from 'react-hot-toast';
 import MenuItemPriceProps from './menuItemPriceProps';
-// import { categories } from "@/app/lib/placeholder-data";
-import { CategoryField } from '@/app/lib/definitions';
+import Link from 'next/link';
 
-export default function CreateProductForm({
+export default function EditProductForm({
+  product,
   categories,
 }: {
+  product: ProductForm;
   categories: CategoryField[];
 }) {
   const initialState = { message: null, errors: {} };
-  const [state, dispatch] = useFormState(createProduct, initialState);
+  const updateProductWithId = updateProduct.bind(null, product.id);
+  const [state, dispatch] = useFormState(updateProductWithId, initialState);
 
-  const [sizes, setSizes] = useState([]);
-
-  useEffect(() => {
-    console.log(state.message);
-    if (state.message === 'Register product OK') {
-      // revalidatePath('/dashboard/categories');
-      toast.success('Producto Registrado Correctamente!');
-      redirect('/dashboard/products');
-    }
-  }, [state]);
+  const [sizes, setSizes] = useState(product.sizes);
 
   return (
     <form action={dispatch}>
@@ -45,6 +37,7 @@ export default function CreateProductForm({
                       id="title"
                       name="title"
                       type="text"
+                      defaultValue={product.title}
                       placeholder="Ingrese un titulo"
                       className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       aria-describedby="title-error"
@@ -73,6 +66,7 @@ export default function CreateProductForm({
                         name="categoryId"
                         aria-describedby="category-error"
                         className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        defaultValue={product.category_id}
                       >
                         <option value="" disabled>
                           Seleccione una categoria{' '}
@@ -132,6 +126,7 @@ export default function CreateProductForm({
                       placeholder="Ingrese la URL de la imagen"
                       className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       aria-describedby="image-error"
+                      defaultValue={product.image_url}
                     />
                   </div>
                   <div id="image-error" aria-live="polite" aria-atomic="true">
@@ -158,6 +153,7 @@ export default function CreateProductForm({
                       placeholder="Ingrese una descripcion"
                       className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       aria-describedby="description-error"
+                      defaultValue={product.description}
                     />
                   </div>
                   <div
@@ -185,10 +181,11 @@ export default function CreateProductForm({
                       id="base_price"
                       name="base_price"
                       type="number"
-                      // step="0.01"
+                    //   step="0.01"
                       placeholder="Ingrese un precio"
                       className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       aria-describedby="base_price-error"
+                      defaultValue={product.base_price}
                     />
                   </div>
                   <div
@@ -207,7 +204,7 @@ export default function CreateProductForm({
               </div>
 
               {/* <input name="sizes" type="hidden" value={JSON.stringify(sizes)} /> */}
-              <input name="sizes" type="text" value={JSON.stringify(sizes)} />
+              <input name="sizes" type="hidden" value={JSON.stringify(sizes)} />
 
               <div>
                 <label className="mb-3 block text-black dark:text-white">
@@ -237,6 +234,7 @@ export default function CreateProductForm({
                         name="status"
                         type="radio"
                         value="active"
+                        defaultChecked={product.status === 'active'}
                         className="h-4 w-4 cursor-pointer border-primary bg-primary text-primary focus:ring-2"
                         // required
                         aria-describedby="status-error"
@@ -254,6 +252,7 @@ export default function CreateProductForm({
                         name="status"
                         type="radio"
                         value="inactive"
+                        defaultChecked={product.status === 'inactive'}
                         className="border-gray-300 bg-gray-100 text-gray-600 h-4 w-4 cursor-pointer focus:ring-2"
                         // required
                         aria-describedby="status-error"

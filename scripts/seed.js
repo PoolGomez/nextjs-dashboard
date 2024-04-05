@@ -247,7 +247,7 @@ async function main() {
   const client = await db.connect();
 
   // await seedUsers(client);
-  await seedCategories(client);
+  // await seedCategories(client);
   await seedProducts(client);
   // await seedCustomers(client);
   // await seedInvoices(client);

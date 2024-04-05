@@ -80,6 +80,9 @@ export type CustomerField = {
   name: string;
 };
 
+
+
+
 export type InvoiceForm = {
   id: string;
   customer_id: string;
@@ -118,11 +121,15 @@ export type Size = {
 };
 export type ProductForm = {
   id: string;
-  customer_id: string;
+  category_id: string;
   title: string;
   description: string;
   base_price: number;
   image_url: string;
   sizes: Size[];
-  status: 'pending' | 'paid';
+  status: 'active' | 'inactive';
+};
+export type CategoryField = {
+  id: string;
+  name: string;
 };

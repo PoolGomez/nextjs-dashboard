@@ -7,10 +7,14 @@ import { Revenue } from './definitions';
 //   });
 // };
 export const formatCurrency = (amount: number) => {
-  return (amount / 100).toLocaleString('es-PE', {
+  return ((amount * 100) / 100).toLocaleString('es-PE', {
     style: 'currency',
     currency: 'PEN',
   });
+  // return (amount / 100).toLocaleString('es-PE', {
+  //   style: 'currency',
+  //   currency: 'PEN',
+  // });
 };
 
 export const formatDateToLocal = (

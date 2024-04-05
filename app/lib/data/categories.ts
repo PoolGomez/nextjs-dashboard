@@ -1,7 +1,7 @@
 
 import { sql } from '@vercel/postgres';
 import { unstable_noStore as noStore } from 'next/cache';
-import { CategoriesTable, CategoryForm } from '../definitions';
+import { CategoriesTable, CategoryField, CategoryForm } from '../definitions';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -67,5 +67,23 @@ export async function fetchCategoryById(id: string) {
     } catch (error) {
       console.error('Database Error:', error);
       throw new Error('Failed to fetch category.');
+    }
+  }
+
+  export async function fetchCategories() {
+    try {
+      const data = await sql<CategoryField>`
+        SELECT
+          id,
+          name
+        FROM categories
+        ORDER BY name ASC
+      `;
+  
+      const customers = data.rows;
+      return customers;
+    } catch (err) {
+      console.error('Database Error:', err);
+      throw new Error('Failed to fetch all customers.');
     }
   }

@@ -1,8 +1,10 @@
 
+import { fetchCategories } from "@/app/lib/data/categories";
 import Breadcrumbs from "@/app/ui/common/breadcrumb";
 import CreateProductForm from "@/app/ui/products/create-form";
 
-export default function ProductCreatePage(){
+export default async function ProductCreatePage(){
+    const categories = await fetchCategories();
     return(
         <main>
         <Breadcrumbs
@@ -15,7 +17,7 @@ export default function ProductCreatePage(){
             },
             ]}
         />
-        <CreateProductForm  />
+        <CreateProductForm categories={categories} />
         </main>
     )
 }

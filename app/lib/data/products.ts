@@ -78,7 +78,8 @@ export async function fetchProductById(id: string) {
       const product = data.rows.map((product) => ({
         ...product,
         // Convert amount from cents to dollars
-        base_price: product.base_price / 100,
+        // base_price: product.base_price / 100,
+        base_price: product.base_price,
       }));
 
       return product[0];
